@@ -8,6 +8,8 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 25px;
+    margin-left: 33%;
+    margin-top: 13%;
 }
      
 .drop-area.active{
@@ -16,7 +18,7 @@
     border: 2px dashed blue;
 }
      
-.drop-area button{
+ button{
     background-color: blue;
     color: #ffffff;
     padding: 8px 15px;
@@ -25,9 +27,15 @@
     border-radius: 4px;
     cursor: pointer;
     border:2px solid blue;
+    
+}
+
+#enviar{
+    margin-left: 34%;
+    margin-top: 2%;
 }
      
-.drop-area button:hover{
+button:hover{
     background-color: transparent;
     color: blue;
 }

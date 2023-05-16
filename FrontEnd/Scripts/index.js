@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var params = new URLSearchParams(window.location.search);
-    var files = params.getAll('inputFiles[]');
+  let contenedor = document.querySelector('#main');
   
-    var imageContainer = document.getElementById('imageContainer');
-    console.log(files);
-    
-    files.forEach(function(file) {
-      var imgElement = document.createElement('img');
-      imgElement.src = file;
-      imageContainer.appendChild(imgElement);
+  let images = JSON.parse(localStorage.getItem('images'));
+  
+  if (images && images.length > 0) {
+    images.forEach(function(image) {
+      let imgElement = document.createElement('img');
+      imgElement.src =  "../FrontEnd/imgs/" + image;// Reemplaza 'ruta-de-las-imagenes/' con la ruta real de las imágenes
+      contenedor.appendChild(imgElement);
     });
-  });
+  }
+});

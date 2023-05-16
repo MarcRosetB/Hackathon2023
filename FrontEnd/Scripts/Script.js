@@ -1,6 +1,7 @@
-let files = [];
+let files = []; //aqui es donde cargaremos las imagenes del drag&drop. 
 let events = ['dragover','dragleave','drop'];
 
+//Estas variables serviran para acceder al html de manera más facil
 let dropArea = document.querySelector('.drop-area');
 let dragDropText = dropArea.querySelector('h2');
 let button = dropArea.querySelector('button');
@@ -16,7 +17,7 @@ events.forEach(event => {
 });
 
 dropArea.addEventListener("dragover", function(){
-    //CODE   
+    
     dropArea.classList.add('active');    
     dragDropText.textContent = "Drop to upload files";    
 });
@@ -53,7 +54,7 @@ function showFiles() {
         });
     }
 }
-
+//Esta funcioón muestra las imagenes del drag & drop en pequeño antes de enviar, por si quieres cancelarlo antes de hacerlo
 function processFile(file,index) {
     const validExtensions = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
     const docType = file.type;
@@ -66,14 +67,13 @@ function processFile(file,index) {
             let prev = `<div class="previewImage">
                             <img src="${reader.result}"/>
                             <span>${file.name}</span>
-                            <span>${file.path}</span>
                             <span onclick="remove(${index})" class="material-symbols-outlined removeBtn">c</span>
                         </div>`;
             preview.innerHTML += prev;
         });
     }
     else {
-        console.log("formato de archivo no aceptado, asegurate que sea una imagen!");
+        alert("formato de archivo no aceptado, asegurate que sea una imagen!");
         files.delete(file);
     }
 }
@@ -98,16 +98,6 @@ document.getElementById("registroProducto").addEventListener("submit", function(
 });
 
 function SubirFoto() {
-    let contenedor = querySelector('.main');
-    let imgElement = document.createElement("img");
-
-    imgElement.alt = "imagen de prueba";
-    imgElement.width = 200;
-    imgElement.height = 150;
-
-    files.forEach(function(file){
-        imgElement.src = reader.result;
-        contenedor.appendChild(imgElement);
-    });
-    document.getElementById("main").submit();
+  localStorage.setItem('images', JSON.stringify(files.map(file => file.name)));
+  window.location.href = '../FrontEnd/index.html';
 };
